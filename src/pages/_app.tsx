@@ -1,11 +1,10 @@
 import { AppProps } from 'next/app';
 import React from 'react';
 import Head from 'next/head';
+import { ThemeProvider, createMuiTheme, CssBaseline } from '@material-ui/core/';
+import theme from '../styles/theme';
 
-// Global styles
-import '../styles/base.scss';
-import '../styles/components.scss';
-import '../styles/utilities.scss';
+const muiTheme = createMuiTheme(theme);
 
 export default function Container({ Component, pageProps }: AppProps) {
   return (
@@ -17,16 +16,30 @@ export default function Container({ Component, pageProps }: AppProps) {
           name="viewport"
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
         />
+
         <meta name="description" content="Movie Hunter" />
         <meta name="keywords" content="movie, hunt, hunter, find, finder" />
         <title>Movie Hunter</title>
 
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#ffc107" />
+
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+        />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        />
       </Head>
 
-      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-      <Component {...pageProps} />
+      <CssBaseline />
+
+      <ThemeProvider theme={muiTheme}>
+        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+        <Component {...pageProps} />
+      </ThemeProvider>
     </>
   );
 }
