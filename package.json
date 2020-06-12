@@ -18,8 +18,7 @@
     "next": "9.4.4",
     "next-pwa": "^2.5.0",
     "react": "16.13.1",
-    "react-dom": "16.13.1",
-    "sass": "^1.26.8"
+    "react-dom": "16.13.1"
   },
   "devDependencies": {
     "@types/jquery": "^3.3.38",
