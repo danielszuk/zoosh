@@ -1,22 +1,18 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import * as Crawler from 'crawler';
+import axios from 'axios';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { title } = req.query;
-  const body = await new Promise((resolve, reject) => {
-    new Crawler({ jQuery: false }).direct({
-      uri: `https://www.imdb.com/search/title/?title_type=feature${
-        title ? `&title=${encodeURI(title.toString())}` : ''
-      }`,
-      callback: (error, response) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(response.body);
-        }
+  const { data: body } = await axios.get(
+    `https://www.imdb.com/search/title/?title_type=feature${
+      title ? `&title=${encodeURI(title.toString())}` : ''
+    }`,
+    {
+      headers: {
+        'Accept-Language': 'en-US',
       },
-    });
-  });
+    }
+  );
 
   res.statusCode = 200;
   res.send(body);

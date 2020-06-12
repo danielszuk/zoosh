@@ -20,7 +20,6 @@
     "@material-ui/core": "^4.10.1",
     "@material-ui/icons": "^4.9.1",
     "axios": "^0.19.2",
-    "crawler": "^1.2.2",
     "jquery": "^3.5.1",
     "next": "9.4.4",
     "next-pwa": "^2.5.0",
