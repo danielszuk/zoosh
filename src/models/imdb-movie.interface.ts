@@ -1,4 +1,4 @@
-export interface Movie {
+export interface ImdbMovie {
   title: string;
   url: string;
   year?: number;

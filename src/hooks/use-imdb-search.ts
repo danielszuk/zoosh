@@ -2,11 +2,11 @@ import axios from 'axios';
 import { parseHTML } from 'jquery';
 import { useCallback } from 'react';
 import traverseNodes from '../utils/traverse-nodes';
-import { Movie } from '../models/movie.interface';
 import getSafe from '../utils/get-safe';
+import { ImdbMovie } from '../models/imdb-movie.interface';
 
 export default function useImdbSearch() {
-  return useCallback(async (keyword: string): Promise<Movie[]> => {
+  return useCallback(async (keyword: string): Promise<ImdbMovie[]> => {
     const { data: html } = await axios.get(
       `/api/imdb-search-crawl${keyword ? `?title=${encodeURI(keyword)}` : ''}`
     );
@@ -22,9 +22,9 @@ export default function useImdbSearch() {
     ]);
     if (!getSafe(() => movieListNode.childNodes)) return [];
 
-    const movies: Movie[] = [];
+    const movies: ImdbMovie[] = [];
     movieListNode.childNodes.forEach((movieCardNode) => {
-      const movie: Partial<Movie> = {};
+      const movie: Partial<ImdbMovie> = {};
 
       const movieNode = traverseNodes(movieCardNode.childNodes, [
         {
@@ -96,7 +96,7 @@ export default function useImdbSearch() {
         )
       );
 
-      movies.push(movie as Movie);
+      movies.push(movie as ImdbMovie);
     });
 
     return movies;
