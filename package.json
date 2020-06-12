@@ -19,6 +19,9 @@
   "dependencies": {
     "@material-ui/core": "^4.10.1",
     "@material-ui/icons": "^4.9.1",
+    "axios": "^0.19.2",
+    "crawler": "^1.2.2",
+    "jquery": "^3.5.1",
     "next": "9.4.4",
     "next-pwa": "^2.5.0",
     "react": "16.13.1",
@@ -26,6 +29,7 @@
     "sass": "^1.26.8"
   },
   "devDependencies": {
+    "@types/jquery": "^3.3.38",
     "@types/node": "^14.0.9",
     "@types/react": "^16.9.35",
     "eslint": "^7.1.0",
