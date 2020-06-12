@@ -10,12 +10,6 @@
     "lint": "eslint src/**/*.{js,jsx,ts,tsx}",
     "lint-fix": "eslint --fix src/**/*.{js,jsx,ts,tsx}"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint",
-      "pre-push": "npm run lint&npm run test"
-    }
-  },
   "dependencies": {
     "@material-ui/core": "^4.10.1",
     "@material-ui/icons": "^4.9.1",
@@ -33,7 +27,6 @@
     "@types/react": "^16.9.35",
     "eslint": "^7.1.0",
     "eslint-config-airbnb-typescript-prettier": "^2.1.1",
-    "husky": "^4.2.5",
     "prettier": "^2.0.5",
     "typescript": "^3.9.3"
   }
