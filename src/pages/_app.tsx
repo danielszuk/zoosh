@@ -1,8 +1,10 @@
 import { AppProps } from 'next/app';
 import React from 'react';
 import Head from 'next/head';
-import { ThemeProvider, createMuiTheme, CssBaseline } from '@material-ui/core/';
+import { createMuiTheme, CssBaseline, ThemeProvider } from '@material-ui/core/';
 import theme from '../styles/theme';
+import LanguageContext from '../contexts/language.context.s';
+import Languages from '../models/languages.enum';
 
 const muiTheme = createMuiTheme(theme);
 
@@ -38,10 +40,12 @@ export default function Container({ Component, pageProps }: AppProps) {
 
       <CssBaseline />
 
-      <ThemeProvider theme={muiTheme}>
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <LanguageContext.Provider value={Languages.en}>
+        <ThemeProvider theme={muiTheme}>
+          {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </LanguageContext.Provider>
     </>
   );
 }

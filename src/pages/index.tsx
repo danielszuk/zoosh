@@ -20,6 +20,7 @@ import useWikipediaSearch from '../hooks/use-wikipedia-search';
 import { ImdbMovie } from '../models/imdb-movie.interface';
 import { WikipediaMovie } from '../models/wikipedia-movie.interface';
 import getSafe from '../utils/get-safe';
+import useText from '../hooks/use-text';
 
 interface ActiveMovie {
   imdbData: ImdbMovie;
@@ -33,6 +34,7 @@ export default function Index() {
   const [imdbLoading, setImdbLoading] = useState<boolean>(false);
   const [wikipediaLoading, setWikipediaLoading] = useState<boolean>(false);
   const utilClasses = useUtilClasses();
+  const text = useText();
   const imdbSearch = useImdbSearch();
   const wikipediaSearch = useWikipediaSearch();
 
@@ -66,7 +68,7 @@ export default function Index() {
             value={keyword}
             onChange={(event) => setKeyword(event.target.value)}
             size="small"
-            label="Movie name"
+            label={text('searchMoviePlaceholder')}
             variant="outlined"
           />
           <IconButton type="submit" aria-label="search" color="primary">
@@ -122,17 +124,13 @@ export default function Index() {
               )}
             </CardContent>
             <CardActions>
-              <Button size="small">Learn More</Button>
+              <Button size="small">{text('openMovieDetials')}</Button>
             </CardActions>
           </Card>
         ))}
       </div>
 
-      <Dialog
-        open={!!activeMovie}
-        onClose={() => setActiveMovie(null)}
-        aria-labelledby="movie details"
-      >
+      <Dialog open={!!activeMovie} onClose={() => setActiveMovie(null)}>
         <DialogTitle>{getSafe(() => activeMovie.imdbData.title)}</DialogTitle>
         <DialogContent>
           {wikipediaLoading ? (
@@ -165,7 +163,7 @@ export default function Index() {
               target="_blank"
               className={utilClasses(['flex', 'itemsCenter'])}
             >
-              Open Wikipedia page <OpenInNew />
+              {text('openWikipediaPage')} <OpenInNew />
             </Typography>
           ) : (
             ''
@@ -177,7 +175,7 @@ export default function Index() {
             target="_blank"
             className={utilClasses(['flex', 'itemsCenter'])}
           >
-            Open IMDB page <OpenInNew />
+            {text('openImdbPage')} <OpenInNew />
           </Typography>
         </DialogContent>
       </Dialog>
