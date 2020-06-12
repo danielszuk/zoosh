@@ -22,6 +22,8 @@ export default function Container({ Component, pageProps }: AppProps) {
         <title>Movie Hunter</title>
 
         <link rel="manifest" href="/manifest.json" />
+        <link rel="icon" href="/icons/favicon.ico" />
+        <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
         <meta name="theme-color" content="#ffc107" />
 
         <link
