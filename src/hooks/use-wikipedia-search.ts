@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useCallback } from 'react';
 import getSafe from '../utils/get-safe';
 import { WikipediaMovie } from '../models/wikipedia-movie.interface';
+import htmlToPlainText from '../utils/html-to-plain-text';
 
 export default function useWikipediaSearch() {
   return useCallback(async (movieName: string): Promise<
@@ -38,7 +39,7 @@ export default function useWikipediaSearch() {
     if (!url) return undefined; // url is required
 
     return {
-      snippet,
+      snippet: snippet ? htmlToPlainText(snippet) : undefined,
       url,
     };
   }, []);
